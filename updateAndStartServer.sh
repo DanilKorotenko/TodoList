@@ -4,6 +4,10 @@ cd /home/danil_korotenko/TodoList/
 
 git pull;
 
-cd nodejsServer;
+cd WebToDoList/todolistweb
+
+npm run build
+
+cd ../../nodejsServer;
 
 npm run startPort80;
