@@ -6,13 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="450"
         xmlns:views="clr-namespace:ToDoList.Views"
         x:Class="ToDoList.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Avalonia To Do List">
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-  <views:ToDoListView/>
-
+  <views:ToDoListView DataContext="{Binding ToDoList}"/>
 </Window>
