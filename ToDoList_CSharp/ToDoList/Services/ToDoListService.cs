@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using ToDoList.DataModel;
-
+using System.Threading.Tasks;
 using System.Net.Http;
+using System;
 
 namespace ToDoList.Services
 {
@@ -11,28 +12,29 @@ namespace ToDoList.Services
 
 
 
-        public IEnumerable<ToDoItem> GetItems()
+        public async Task<IEnumerable<ToDoItem>> GetItems()
         {
-            ToDoItem[] result = new ToDoItem[3];
-            // try
-            // {
-            //     using HttpResponseMessage response = await client.PostAsync("http://localhost:8080/getAllItems", null);
-            //     response.EnsureSuccessStatusCode();
-            //     string responseBody = await response.Content.ReadAsStringAsync();
-            //     // Above three lines can be replaced with new helper method below
-            //     // string responseBody = await client.GetStringAsync(uri);
+            try
+            {
+                using HttpResponseMessage response = await client.PostAsync("http://localhost:8080/getAllItems", null);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
 
-            //     Console.WriteLine(responseBody);
-            // }
-            // catch (HttpRequestException e)
-            // {
-            //     Console.WriteLine("\nException Caught!");
-            //     Console.WriteLine("Message :{0} ", e.Message);
-            // }
+                Console.WriteLine(responseBody);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+            }
+
+            ToDoItem[] result = new ToDoItem[3];
 
             result[0] = new ToDoItem { Description = "Walk the dog" };
             result[1] = new ToDoItem { Description = "Buy some milk" };
             result[2] = new ToDoItem { Description = "Learn Avalonia", IsChecked = true };
+
+            Console.WriteLine($"return result: {result}");
 
             return result;
         }
