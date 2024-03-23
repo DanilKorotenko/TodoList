@@ -7,3 +7,4 @@ Podfile.lock
 TodoList_macosx/TodoListApp.xcodeproj/project.xcworkspace/xcuserdata/danilkorotenko.xcuserdatad
 TodoList_macosx/TodoListApp.xcodeproj/xcuserdata/danilkorotenko.xcuserdatad
 ToDoList_CSharp/ToDoList/obj
+ToDoList_CSharp/ToDoList/bin
