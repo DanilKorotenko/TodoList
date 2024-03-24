@@ -15,9 +15,16 @@
     <ItemsControl ItemsSource="{Binding ListItems}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <CheckBox Margin="4"
+          <RelativePanel >
+                    <!-- <CheckBox Margin="4"
                     IsChecked="{Binding IsChecked}"
-                    Content="{Binding item}"/>
+                    Content="{Binding item}"/> -->
+            <CheckBox Margin="4"
+                    x:Name="checkBox"
+                    IsChecked="{Binding IsChecked}" />
+            <TextBox Text="{Binding item}"
+                    RelativePanel.RightOf="checkBox" />
+          </RelativePanel>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
     </ItemsControl>
