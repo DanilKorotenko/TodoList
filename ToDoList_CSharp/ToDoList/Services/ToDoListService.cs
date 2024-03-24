@@ -3,6 +3,7 @@ using ToDoList.DataModel;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System;
+using System.Text.Json;
 
 namespace ToDoList.Services
 {
@@ -10,29 +11,28 @@ namespace ToDoList.Services
     {
         private static readonly HttpClient client = new HttpClient();
 
-
-
         public async Task<IEnumerable<ToDoItem>> GetItems()
         {
+            ToDoItem[] result = new ToDoItem[0];
             try
             {
                 using HttpResponseMessage response = await client.PostAsync("http://localhost:8080/getAllItems", null);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(responseBody);
+                ToDoItem[]? items = 
+                    JsonSerializer.Deserialize<ToDoItem[]>(responseBody);
+
+                if (items != null)
+                {
+                    result = items;
+                }
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
             }
-
-            ToDoItem[] result = new ToDoItem[3];
-
-            result[0] = new ToDoItem { Description = "Walk the dog" };
-            result[1] = new ToDoItem { Description = "Buy some milk" };
-            result[2] = new ToDoItem { Description = "Learn Avalonia", IsChecked = true };
 
             Console.WriteLine($"return result: {result}");
 

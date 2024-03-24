@@ -10,21 +10,19 @@ namespace ToDoList.ViewModels
 {
     public class ToDoListViewModel : ViewModelBase
     {
-        private Timer timer;
+        // private Timer? timer = null;
         private ToDoListService service = new ToDoListService();
 
         public ToDoListViewModel()
         {
-            timer = new Timer(2000);
-
-            timer.Elapsed += Tick;
-
-            timer.Enabled = true;
+            // timer = new Timer(2000);
+            // timer.Elapsed += Tick;
+            // timer.Enabled = true;
 
             update();
         }
 
-        private async void Tick(object sender, ElapsedEventArgs e)
+        private void Tick(object sender, ElapsedEventArgs e)
         {
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff}: starting a new callback.");
             update();
