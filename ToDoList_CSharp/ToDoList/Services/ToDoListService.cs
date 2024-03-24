@@ -9,6 +9,12 @@ namespace ToDoList.Services
 {
     public class ToDoListService
     {
+        public interface Delegate
+        {
+            public void update();
+
+        }
+
         private static readonly HttpClient client = new HttpClient();
 
 /// Public methods ////////////////////////////////////////////////////////////////////////////

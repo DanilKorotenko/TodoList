@@ -23,6 +23,8 @@
                     x:Name="checkBox"
                     IsChecked="{Binding IsChecked}" />
             <TextBox Text="{Binding item}"
+                    Watermark="Enter text here to add item"
+
                     RelativePanel.RightOf="checkBox" />
           </RelativePanel>
         </DataTemplate>
