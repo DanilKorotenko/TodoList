@@ -11,6 +11,8 @@ namespace ToDoList.Services
     {
         private static readonly HttpClient client = new HttpClient();
 
+/// Public methods ////////////////////////////////////////////////////////////////////////////
+
         public async Task<IEnumerable<ToDoItem>> GetItems()
         {
             ToDoItem[] result = new ToDoItem[0];
@@ -34,8 +36,22 @@ namespace ToDoList.Services
                 Console.WriteLine("Message :{0} ", e.Message);
             }
 
-            Console.WriteLine($"return result: {result}");
+            result = pushToArray(result, new ToDoItem());
 
+            return result;
+        }
+
+/// Private methods ////////////////////////////////////////////////////////////////////////////
+
+        private ToDoItem[] pushToArray(ToDoItem[] arr, ToDoItem item)
+        {
+            ToDoItem[] result = new ToDoItem[arr.Length + 1];
+            int i =0;
+            for (; i< arr.Length; i++)
+            {
+                result[i] = arr[i];
+            }
+            result[i] = item;
             return result;
         }
     }
